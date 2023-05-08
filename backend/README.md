@@ -283,7 +283,7 @@ Errors
 }
 ```
 400 BAD REQUEST
-````json
+```json
 {
     "message": "bad request",
     "success": false
