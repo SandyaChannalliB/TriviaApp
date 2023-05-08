@@ -124,12 +124,12 @@ GET /questions
       "difficulty": 2, 
       "id": 5, 
       "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-    }, 
-    ......
-  ], 
+    }
+  ],
   "success": true, 
   "total_questions": 20
-}```
+}
+```
 
 DELETE /questions/<int:question_id>
 - Delete a specific question based on it's id
