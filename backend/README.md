@@ -80,7 +80,8 @@ GET /categories
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
 - Request Arguments: None
 - Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
-{
+
+```{
   "categories": {
     "1": "Science", 
     "2": "Art", 
@@ -91,12 +92,13 @@ GET /categories
   }, 
   "success": true
 }
+```
 
 GET /questions
 - Fetches paginated questions in the groups of 10 questions per page.
 - Request Arguments: page /questions?page=1 - In case /questions, default is 1
 - Returns: An object with questions for the page specified in the request along with categories and total number of questions
-{
+```{
   "categories": {
     "1": "Science", 
     "2": "Art", 
@@ -125,22 +127,24 @@ GET /questions
   ], 
   "success": true, 
   "total_questions": 20
-}
+}```
 
 DELETE /questions/<int:question_id>
-Delete a specific question based on it's id
-Request Arguments: None
-Returns: An object with deleted question's id.
-{
+- Delete a specific question based on it's id
+- Request Arguments: None
+- Returns: An object with deleted question's id.
+
+```{
   "deleted": 4, 
   "success": true, 
 }
+```
 
 GET /categories/<int:category_id>/questions
 - Fetches paginated questions in the groups of 10 questions per page filtered by category.
 - Request Arguments: page /categories/1/questions?page=1 - In case /categories/1/questions, default is 1
 - Returns: An object with questions for the page specified in the request along with current category and total number of questions
-{
+```{
   "current_category": 1, 
   "questions": [
     {
@@ -168,16 +172,17 @@ GET /categories/<int:category_id>/questions
   "success": true, 
   "total_questions": 3
 }
-
+```
 
 POST /questions
 - Searches the database for questions containing the term provided as part of request payload
 - Request Payload: Takes a json object with a property searchTerm which holds a string for searching the questions containing that search term
-{
+```{
     "searchTerm":"who"
 }
-Returns: An object with a list of questions macthing the search term along with categories they belong to and total number of questions.
-{
+```
+- Returns: An object with a list of questions macthing the search term along with categories they belong to and total number of questions.
+```{
   "current_category": null, 
   "questions": [
     {
@@ -205,27 +210,30 @@ Returns: An object with a list of questions macthing the search term along with 
   "success": true, 
   "total_questions": 3
 }
+```
 
 POST /questions
-Creates a new question in the database based on the request payload
-Request Payload: A JSON object containing question text, answer text, difficulty number and category id
-{
+- Creates a new question in the database based on the request payload
+- Request Payload: A JSON object containing question text, answer text, difficulty number and category id
+```{
   "question": "Indian national anthem was composed by",
   "answer": "Rabindranath Tagore",
   "difficulty": "2",
   "category": "4"
 }
+```
 Returns: success as true.
-{
+```{
   "success": true
 }
+```
   
 POST /quizzes
-Fetches questions to play the quiz.
-Takes category and previous question parameters
-Returns a random questions within the given category and which is not one of the previous questions
-Request Payload: list of ids of previous questions and quiz category object
-{
+- Fetches questions to play the quiz.
+- Takes category and previous question parameters
+- Returns a random questions within the given category and which is not one of the previous questions
+- Request Payload: list of ids of previous questions and quiz category object
+```{
   "previous_questions": [
     23
   ],
@@ -234,8 +242,9 @@ Request Payload: list of ids of previous questions and quiz category object
     "id": "4"
   }
 }
-Returns: An object with question
-{
+```
+- Returns: An object with question
+```{
   "question": {
     "answer": "Muhammad Ali", 
     "category": 4, 
@@ -245,41 +254,48 @@ Returns: An object with question
   }, 
   "success": true
 }
+```
 
 
 Errors
-404 RESOURCE NOT FOUND
+```404 RESOURCE NOT FOUND
 {
     "message": "resource not found",
     "success": false
 }
+```
 500 INTERNAL SERVER ERROR
-{
+```{
     "message": "internal server error",
     "success": false
 }
+```
 400 BAD REQUEST
-{
+```{
     "message": "bad request",
     "success": false
 }
+```
 405 METHOD NOT ALLOWED
-{
+```{
     "message": "method not allowed",
     "success": false
 }
+```
 422 UNPROCESSABLE
-{
+```{
     "message": "unprocessable",
     "success": false
 }
+```
 
 
 
 ## Testing
-To run the tests, run
+```To run the tests, run
 dropdb trivia_test
 createdb trivia_test
 psql trivia_test < trivia.psql
 python3 test_flaskr.py
+```
 
