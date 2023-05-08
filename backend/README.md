@@ -81,7 +81,8 @@ GET /categories
 - Request Arguments: None
 - Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
 
-```{
+```json
+{
   "categories": {
     "1": "Science", 
     "2": "Art", 
@@ -98,7 +99,8 @@ GET /questions
 - Fetches paginated questions in the groups of 10 questions per page.
 - Request Arguments: page /questions?page=1 - In case /questions, default is 1
 - Returns: An object with questions for the page specified in the request along with categories and total number of questions
-```{
+```json
+{
   "categories": {
     "1": "Science", 
     "2": "Art", 
@@ -134,7 +136,8 @@ DELETE /questions/<int:question_id>
 - Request Arguments: None
 - Returns: An object with deleted question's id.
 
-```{
+```json
+{
   "deleted": 4, 
   "success": true, 
 }
@@ -144,7 +147,8 @@ GET /categories/<int:category_id>/questions
 - Fetches paginated questions in the groups of 10 questions per page filtered by category.
 - Request Arguments: page /categories/1/questions?page=1 - In case /categories/1/questions, default is 1
 - Returns: An object with questions for the page specified in the request along with current category and total number of questions
-```{
+```json
+{
   "current_category": 1, 
   "questions": [
     {
@@ -177,12 +181,14 @@ GET /categories/<int:category_id>/questions
 POST /questions
 - Searches the database for questions containing the term provided as part of request payload
 - Request Payload: Takes a json object with a property searchTerm which holds a string for searching the questions containing that search term
-```{
+```json
+{
     "searchTerm":"who"
 }
 ```
 - Returns: An object with a list of questions macthing the search term along with categories they belong to and total number of questions.
-```{
+```json
+{
   "current_category": null, 
   "questions": [
     {
@@ -215,7 +221,8 @@ POST /questions
 POST /questions
 - Creates a new question in the database based on the request payload
 - Request Payload: A JSON object containing question text, answer text, difficulty number and category id
-```{
+```json
+{
   "question": "Indian national anthem was composed by",
   "answer": "Rabindranath Tagore",
   "difficulty": "2",
@@ -223,7 +230,8 @@ POST /questions
 }
 ```
 Returns: success as true.
-```{
+```json
+{
   "success": true
 }
 ```
@@ -233,7 +241,8 @@ POST /quizzes
 - Takes category and previous question parameters
 - Returns a random questions within the given category and which is not one of the previous questions
 - Request Payload: list of ids of previous questions and quiz category object
-```{
+```json
+{
   "previous_questions": [
     23
   ],
@@ -244,7 +253,8 @@ POST /quizzes
 }
 ```
 - Returns: An object with question
-```{
+```json
+{
   "question": {
     "answer": "Muhammad Ali", 
     "category": 4, 
@@ -258,32 +268,37 @@ POST /quizzes
 
 
 Errors
-```404 RESOURCE NOT FOUND
+404 RESOURCE NOT FOUND
+```json
 {
     "message": "resource not found",
     "success": false
 }
 ```
 500 INTERNAL SERVER ERROR
-```{
+```json
+{
     "message": "internal server error",
     "success": false
 }
 ```
 400 BAD REQUEST
-```{
+````json
+{
     "message": "bad request",
     "success": false
 }
 ```
 405 METHOD NOT ALLOWED
-```{
+```json
+{
     "message": "method not allowed",
     "success": false
 }
 ```
 422 UNPROCESSABLE
-```{
+```json
+{
     "message": "unprocessable",
     "success": false
 }
@@ -292,7 +307,8 @@ Errors
 
 
 ## Testing
-```To run the tests, run
+To run the tests, run
+```bash
 dropdb trivia_test
 createdb trivia_test
 psql trivia_test < trivia.psql
