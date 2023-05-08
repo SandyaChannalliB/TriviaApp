@@ -1,7 +1,7 @@
 #---------Imports-----------
 import os
 from flask import Flask, request, abort, jsonify
-from flask_sqlalchemy import SQLAlchemy
+
 from flask_cors import CORS
 import random
 
@@ -57,7 +57,9 @@ def create_app(test_config=None):
   def get_all_questions():
     selection = Question.query.order_by(Question.id).all()
     current_questions = paginate_questions(request,selection)
-    
+    if len(current_questions) == 0:
+        abort(404)
+
     categories = Category.query.order_by(Category.id).all()
     if len(categories) == 0:
         abort(404)
@@ -73,22 +75,22 @@ def create_app(test_config=None):
   '''
   Endpoint to DELETE question using a question ID. 
   '''
-  @app.route("/questions/<int:id>",methods=['DELETE'])
-  def remove_question(id):
-    question = Question.query.filter(Question.id==id).one_or_none()
+  @app.route("/questions/<int:question_id>",methods=['DELETE'])
+  def remove_question(question_id):
+    question = Question.query.filter(Question.id==question_id).one_or_none()
     if question is None:
       abort(404)
     question.delete()
     
     return jsonify({
       "success":True,
-      "deleted":id
+      "deleted":question_id
     })
 
   '''
   Endpoint to POST a new question and to get questions based on a search term
   '''
-  @app.route("/questions/results",methods=['POST'])
+  @app.route("/questions",methods=['POST'])
   def create_question():
     body = request.get_json()
     new_question = body.get("question",None)
@@ -102,7 +104,6 @@ def create_app(test_config=None):
           Question.question.ilike("%{}%".format(searchTerm))
         )
         questions = paginate_questions(request,matched_questions)
-        
         return jsonify({
           "success":True,
           "questions":questions,
@@ -110,8 +111,8 @@ def create_app(test_config=None):
           'current_category': None
         })
       else:
-        if (not new_question) and (not new_answer) and (not new_category) and (not new_difficulty):
-          abort(405)
+        if (not new_question) or (not new_answer) or (not new_category) or (not new_difficulty):
+          abort(422)
         question = Question(new_question,new_answer,new_category,new_difficulty)
         question.insert()
         
@@ -124,16 +125,16 @@ def create_app(test_config=None):
   '''
   Endpoint to get questions based on category. 
   '''
-  @app.route('/categories/<int:id>/questions')
-  def get_questions_by_category(id):
-    allquestions = Question.query.filter(Question.category == id).all()
+  @app.route('/categories/<int:category_id>/questions', methods=['GET'])
+  def get_questions_by_category(category_id):
+    allquestions = Question.query.filter(Question.category == category_id).all()
     questions = paginate_questions(request,allquestions)
 
     return jsonify({
       "success":True,
       "questions":questions,
       "total_questions":len(allquestions),
-      "current_category":id
+      "current_category":category_id
     })
 
 

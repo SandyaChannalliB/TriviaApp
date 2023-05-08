@@ -17,8 +17,8 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    with app.app_context():
-      db.create_all()
+    #with app.app_context(): uncomment if FLASK version is 2.3 and above
+    db.create_all()
 
 '''
 Question

@@ -15,6 +15,12 @@ That's where you come in! Help them finish the trivia app so they can start hold
 
 Completing this trivia app will give you the ability to structure plan, implement, and test an API - skills essential for enabling your future applications to communicate with others.
 
+## Tasks
+There are TODO comments throughout project. Start by reading the READMEs in:
+
+./frontend/
+./backend/
+
 ## Starting and Submitting the Project
 
 [Fork](https://help.github.com/en/articles/fork-a-repo) the [project repository](https://github.com/udacity/FSND/blob/master/projects/02_trivia_api/starter) and [Clone](https://help.github.com/en/articles/cloning-a-repository) your forked repository to your machine. Work on the project locally and make sure to push all your changes to the remote repository before submitting the link to your repository in the Classroom.
@@ -25,7 +31,7 @@ Completing this trivia app will give you the ability to structure plan, implemen
 We started the full stack application for you. It is designed with some key functional areas:
 
 ### Backend
-The [./backend](https://github.com/udacity/FSND/blob/master/projects/02_trivia_api/starter/backend/README.md) directory contains a partially completed Flask and SQLAlchemy server. You will work primarily in `__init__.py` to define your endpoints and can reference models.py for DB and SQLAlchemy setup. These are the files you'd want to edit in the backend:
+The [./backend](https://github.com/SandyaChannalliB/TriviaApp/edit/main/backend/README.md) directory contains a partially completed Flask and SQLAlchemy server. You will work primarily in `__init__.py` to define your endpoints and can reference models.py for DB and SQLAlchemy setup. These are the files you'd want to edit in the backend:
 
 1. *./backend/flaskr/`__init__.py`*
 2. *./backend/test_flaskr.py*
@@ -33,7 +39,7 @@ The [./backend](https://github.com/udacity/FSND/blob/master/projects/02_trivia_a
 
 ### Frontend
 
-The [./frontend](https://github.com/udacity/FSND/blob/master/projects/02_trivia_api/starter/frontend/README.md) directory contains a complete React frontend to consume the data from the Flask server. If you have prior experience building a frontend application, you should feel free to edit the endpoints as you see fit for the backend you design. If you do not have prior experience building a frontend application, you should read through the frontend code before starting and make notes regarding:
+The [./frontend](https://github.com/SandyaChannalliB/TriviaApp/edit/main/frontend/README.md) directory contains a complete React frontend to consume the data from the Flask server. If you have prior experience building a frontend application, you should feel free to edit the endpoints as you see fit for the backend you design. If you do not have prior experience building a frontend application, you should read through the frontend code before starting and make notes regarding:
 
 1. What are the end points and HTTP methods the frontend is expecting to consume?
 2. How are the requests from the frontend formatted? Are they expecting certain parameters or payloads? 
